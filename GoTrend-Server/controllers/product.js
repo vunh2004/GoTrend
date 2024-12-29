@@ -1,5 +1,5 @@
-import Product from "../models/product";
 import { productSchema } from "../schemas/product";
+import ProductModel from "../models/product";
 
 // 1. Thêm sản phẩm
 export const addProduct = async (req, res) => {
@@ -16,7 +16,7 @@ export const addProduct = async (req, res) => {
     }
 
     // Tạo mới sản phẩm từ dữ liệu hợp lệ
-    const product = new Product(value); // Dùng dữ liệu đã được validate
+    const product = new ProductModel(value); // Dùng dữ liệu đã được validate
 
     // Lưu sản phẩm vào cơ sở dữ liệu
     const savedProduct = await product.save();
@@ -50,7 +50,7 @@ export const getProductById = async (req, res) => {
   const { id } = req.params;
   try {
     // Tìm sản phẩm theo ID
-    const product = await Product.findById(id);
+    const product = await ProductModel.findById(id);
 
     // Nếu không tìm thấy sản phẩm
     if (!product) {
@@ -69,7 +69,7 @@ export const updateProduct = async (req, res) => {
   const { id } = req.params;
   try {
     // Validate dữ liệu đầu vào
-    const { error, value } = await productSchema.validate(req.body, {
+    const { error, value } = productSchema.validate(req.body, {
       abortEarly: false,
     });
 
@@ -80,7 +80,7 @@ export const updateProduct = async (req, res) => {
     }
 
     // Cập nhật sản phẩm
-    const updatedProduct = await Product.findByIdAndUpdate(id, value, {
+    const updatedProduct = await ProductModel.findByIdAndUpdate(id, value, {
       new: true, // Đảm bảo trả về sản phẩm sau khi cập nhật
     });
 
@@ -105,7 +105,7 @@ export const deleteProduct = async (req, res) => {
   const { id } = req.params;
   try {
     // Xóa sản phẩm theo ID
-    const deletedProduct = await Product.findByIdAndDelete(id);
+    const deletedProduct = await ProductModel.findByIdAndDelete(id);
 
     // Nếu không tìm thấy sản phẩm
     if (!deletedProduct) {

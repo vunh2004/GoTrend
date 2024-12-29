@@ -49,9 +49,9 @@ export const productSchema = Joi.object({
     "string.empty": "Mô tả sản phẩm không được để trống",
     "string.min": "Mô tả sản phẩm phải có ít nhất 10 ký tự",
   }),
-  category: Joi.string().required().messages({
-    "any.required": "Danh mục sản phẩm là trường bắt buộc",
-    "string.empty": "Danh mục sản phẩm không được để trống",
+  categoryId: Joi.string().required().messages({
+    "any.required": "ID Danh mục sản phẩm là trường bắt buộc",
+    "string.empty": "ID Danh mục sản phẩm không được để trống",
   }),
 
   status: Joi.string()

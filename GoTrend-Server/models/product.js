@@ -32,9 +32,9 @@ const productSchema = new mongoose.Schema(
       required: [true, "Số lượng là bắt buộc"],
       min: [0, "Số lượng không thể nhỏ hơn 0"],
     },
-    category: {
-      type: String, // Ví dụ: 'Áo', 'Quần', 'Phụ kiện'
-      required: [true, "Danh mục sản phẩm là bắt buộc"],
+    categoryId: {
+      type: String,
+      required: [true, "ID Danh mục sản phẩm là bắt buộc"],
     },
     images: {
       type: [String], // Danh sách URL hình ảnh
@@ -62,4 +62,4 @@ const productSchema = new mongoose.Schema(
   { versionKey: false, timestamps: true } // Đây là tùy chọn tự động thêm createdAt và updatedAt
 );
 
-export default mongoose.model("Product", productSchema);
+export default mongoose.model("ProductModel", productSchema);
